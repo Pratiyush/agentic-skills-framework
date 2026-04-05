@@ -1,0 +1,106 @@
+name: Publish to npm
+
+on:
+  pull_request:
+    branches: [master]
+    types: [closed]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "pnpm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm --filter @skillscraft/core test
+
+      - name: Configure git
+        run: |
+          git config user.name "Pratiyush"
+          git config user.email "pratiyush1@gmail.com"
+
+      - name: Bump version (patch)
+        run: |
+          NEW_VERSION=$(node -e "
+            const pkg = require('./packages/spec/package.json');
+            const parts = pkg.version.split('.');
+            parts[2] = parseInt(parts[2]) + 1;
+            console.log(parts.join('.'));
+          ")
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+          # Update all package versions
+          for pkg in packages/spec packages/core packages/cli; do
+            cd $pkg
+            npm version $NEW_VERSION --no-git-tag-version
+            cd ../..
+          done
+
+          # Update workspace dependency versions
+          cd packages/core
+          npm pkg set "dependencies.@skillscraft/spec=$NEW_VERSION"
+          cd ../cli
+          npm pkg set "dependencies.@skillscraft/core=$NEW_VERSION"
+          npm pkg set "dependencies.@skillscraft/spec=$NEW_VERSION"
+          cd ../..
+
+      - name: Rebuild with new versions
+        run: pnpm install --no-frozen-lockfile && pnpm build
+
+      - name: Publish @skillscraft/spec
+        run: cd packages/spec && npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @skillscraft/core
+        run: cd packages/core && npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @skillscraft/cli
+        run: cd packages/cli && npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Commit version bump and tag
+        run: |
+          git add -A
+          git commit -m "v${{ env.NEW_VERSION }}"
+          git tag -a "v${{ env.NEW_VERSION }}" -m "v${{ env.NEW_VERSION }}"
+          git push origin master --tags
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "v${{ env.NEW_VERSION }}"
+          name: "v${{ env.NEW_VERSION }}"
+          body: "Released via PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+          prerelease: true
