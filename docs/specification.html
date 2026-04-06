@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specification Reference — Agentic Skills Framework</title>
+  <meta name="description" content="Complete specification reference for Agent Skills: frontmatter fields, validation rules, lint rules, directory structure, and extended spec.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="./" class="nav-brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Agentic Skills Framework
+      </a>
+      <nav class="nav-links">
+        <a href="./">Home</a>
+        <a href="concepts.html">Concepts</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="specification.html" class="active">Specification</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="https://github.com/Pratiyush/agentic-skills-framework" target="_blank" rel="noopener noreferrer" class="nav-github" aria-label="GitHub repository">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-sm">
+      <div class="container">
+        <h1>Specification Reference</h1>
+        <p class="hero-sub">Complete reference for the Agent Skills format.</p>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="section">
+      <div class="container doc-layout">
+        <aside class="toc">
+          <h4>Contents</h4>
+          <ul>
+            <li><a href="#file-format">File Format</a></li>
+            <li><a href="#frontmatter">Frontmatter Fields</a></li>
+            <li><a href="#name-rules">Name Rules</a></li>
+            <li><a href="#directory-structure">Directory Structure</a></li>
+            <li><a href="#validation-rules">Validation Rules</a></li>
+            <li><a href="#lint-rules">Lint Rules</a></li>
+            <li><a href="#extended-spec">Extended Specification</a></li>
+            <li><a href="#constants">Constants</a></li>
+          </ul>
+        </aside>
+
+        <div class="doc-content">
+
+          <!-- File Format -->
+          <section id="file-format">
+            <h2>File Format</h2>
+            <p>Every Agent Skill is defined by a <code>SKILL.md</code> file containing YAML frontmatter followed by a Markdown body.</p>
+            <pre class="code-block"><code><span class="c-comment">---</span>
+<span class="c-kw">name</span>: my-skill
+<span class="c-kw">description</span>: What this does. Use when the user asks for X.
+<span class="c-comment">---</span>
+
+# My Skill
+
+## Instructions
+
+1. Step one
+2. Step two</code></pre>
+            <p>The frontmatter is delimited by <code>---</code> on its own line. The parser uses this regex:</p>
+            <pre class="code-block"><code>/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/</code></pre>
+          </section>
+
+          <!-- Frontmatter Fields -->
+          <section id="frontmatter">
+            <h2>Frontmatter Fields</h2>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Constraints</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><code>name</code></td>
+                    <td><span class="badge badge-error">required</span></td>
+                    <td>string</td>
+                    <td>1–64 chars, lowercase alphanumeric + hyphens, must match parent directory</td>
+                    <td>Unique skill identifier</td>
+                  </tr>
+                  <tr>
+                    <td><code>description</code></td>
+                    <td><span class="badge badge-error">required</span></td>
+                    <td>string</td>
+                    <td>1–1024 chars, should include "Use when" trigger</td>
+                    <td>Explains what the skill does and when to activate it</td>
+                  </tr>
+                  <tr>
+                    <td><code>license</code></td>
+                    <td>optional</td>
+                    <td>string</td>
+                    <td>No length limit</td>
+                    <td>License name or reference to bundled license file</td>
+                  </tr>
+                  <tr>
+                    <td><code>compatibility</code></td>
+                    <td>optional</td>
+                    <td>string</td>
+                    <td>Max 500 chars</td>
+                    <td>Environment requirements (product, packages, network)</td>
+                  </tr>
+                  <tr>
+                    <td><code>metadata</code></td>
+                    <td>optional</td>
+                    <td>Record&lt;string, string&gt;</td>
+                    <td>String keys and string values only</td>
+                    <td>Arbitrary key-value pairs for additional data</td>
+                  </tr>
+                  <tr>
+                    <td><code>allowed-tools</code></td>
+                    <td>optional</td>
+                    <td>string</td>
+                    <td>Space-delimited list</td>
+                    <td><span class="badge badge-warn">experimental</span> Pre-approved tools list</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Example: full frontmatter</h3>
+            <pre class="code-block"><code><span class="c-comment">---</span>
+<span class="c-kw">name</span>: data-validation
+<span class="c-kw">description</span>: >
+  Validate CSV and JSON data files against schemas.
+  Use when the user asks to check data quality.
+<span class="c-kw">license</span>: Apache-2.0
+<span class="c-kw">compatibility</span>: Requires Python 3.11+ and uv
+<span class="c-kw">metadata</span>:
+  author: skillscraft
+  version: "1.0"
+  category: data
+<span class="c-kw">allowed-tools</span>: Bash Read
+<span class="c-comment">---</span></code></pre>
+          </section>
+
+          <!-- Name Rules -->
+          <section id="name-rules">
+            <h2>Name Rules</h2>
+            <p>The <code>name</code> field is validated against this regex:</p>
+            <pre class="code-block"><code>/^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,62}[a-z0-9]?$/</code></pre>
+            <p>Rules:</p>
+            <ul>
+              <li>1–64 characters</li>
+              <li>Lowercase letters, digits, and hyphens only</li>
+              <li>Must start and end with a letter or digit</li>
+              <li>No consecutive hyphens (<code>my--skill</code> is invalid)</li>
+              <li>Must match the parent directory name</li>
+            </ul>
+            <div class="card-grid cols-2">
+              <div class="card">
+                <h4>Valid names</h4>
+                <ul>
+                  <li><code>code-review</code></li>
+                  <li><code>data-validation</code></li>
+                  <li><code>test-generator</code></li>
+                  <li><code>my-skill-v2</code></li>
+                </ul>
+              </div>
+              <div class="card">
+                <h4>Invalid names</h4>
+                <ul>
+                  <li><code>Code-Review</code> — uppercase</li>
+                  <li><code>-my-skill</code> — leading hyphen</li>
+                  <li><code>my--skill</code> — consecutive hyphens</li>
+                  <li><code>my_skill</code> — underscores not allowed</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Directory Structure -->
+          <section id="directory-structure">
+            <h2>Directory Structure</h2>
+            <pre class="code-block"><code>my-skill/
+├── SKILL.md          <span class="c-comment"># Required — metadata + instructions</span>
+├── scripts/          <span class="c-comment"># Optional — executable code (any language)</span>
+│   ├── analyze.py
+│   └── report.js
+├── references/       <span class="c-comment"># Optional — detailed documentation</span>
+│   └── GUIDE.md
+└── assets/           <span class="c-comment"># Optional — templates, configs, resources</span>
+    └── config.json</code></pre>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Directory</th><th>Purpose</th><th>When loaded</th></tr></thead>
+                <tbody>
+                  <tr><td><code>SKILL.md</code></td><td>Core skill definition</td><td>Always — loaded into agent context on activation</td></tr>
+                  <tr><td><code>scripts/</code></td><td>Executable code in any language</td><td>On demand — agent runs scripts as instructed</td></tr>
+                  <tr><td><code>references/</code></td><td>Extended documentation for progressive disclosure</td><td>On demand — agent reads when instructed by SKILL.md</td></tr>
+                  <tr><td><code>assets/</code></td><td>Config files, templates, static resources</td><td>On demand — referenced by scripts or instructions</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Validation Rules -->
+          <section id="validation-rules">
+            <h2>Validation Rules</h2>
+            <p>The validator checks strict spec compliance. All errors must be fixed; warnings are advisory.</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Rule</th><th>Severity</th><th>What it checks</th></tr></thead>
+                <tbody>
+                  <tr><td><code>name.required</code></td><td><span class="badge badge-error">error</span></td><td><code>name</code> field must be present</td></tr>
+                  <tr><td><code>name.type</code></td><td><span class="badge badge-error">error</span></td><td><code>name</code> must be a string</td></tr>
+                  <tr><td><code>name.maxLength</code></td><td><span class="badge badge-error">error</span></td><td><code>name</code> must not exceed 64 characters</td></tr>
+                  <tr><td><code>name.format</code></td><td><span class="badge badge-error">error</span></td><td><code>name</code> must match the name regex (lowercase, hyphens, no consecutive hyphens)</td></tr>
+                  <tr><td><code>name.matchesDirectory</code></td><td><span class="badge badge-error">error</span></td><td><code>name</code> must match the parent directory name</td></tr>
+                  <tr><td><code>description.required</code></td><td><span class="badge badge-error">error</span></td><td><code>description</code> field must be present</td></tr>
+                  <tr><td><code>description.type</code></td><td><span class="badge badge-error">error</span></td><td><code>description</code> must be a string</td></tr>
+                  <tr><td><code>description.maxLength</code></td><td><span class="badge badge-error">error</span></td><td><code>description</code> must not exceed 1024 characters</td></tr>
+                  <tr><td><code>compatibility.type</code></td><td><span class="badge badge-error">error</span></td><td>If present, <code>compatibility</code> must be a string</td></tr>
+                  <tr><td><code>compatibility.maxLength</code></td><td><span class="badge badge-error">error</span></td><td><code>compatibility</code> must not exceed 500 characters</td></tr>
+                  <tr><td><code>metadata.type</code></td><td><span class="badge badge-error">error</span></td><td>If present, <code>metadata</code> must be an object</td></tr>
+                  <tr><td><code>metadata.valueType</code></td><td><span class="badge badge-error">error</span></td><td>All metadata values must be strings</td></tr>
+                  <tr><td><code>license.type</code></td><td><span class="badge badge-error">error</span></td><td>If present, <code>license</code> must be a string</td></tr>
+                  <tr><td><code>allowed-tools.type</code></td><td><span class="badge badge-error">error</span></td><td>If present, <code>allowed-tools</code> must be a string</td></tr>
+                  <tr><td><code>frontmatter.unknownField</code></td><td><span class="badge badge-warn">warning</span></td><td>Unknown fields in frontmatter are flagged</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Lint Rules -->
+          <section id="lint-rules">
+            <h2>Lint Rules</h2>
+            <p>The linter goes beyond spec compliance to check best practices. Best-practice checks that go beyond spec compliance.</p>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Rule</th><th>Severity</th><th>What it checks</th><th>Fix</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><code>context-budget</code></td>
+                    <td><span class="badge badge-warn">warn</span></td>
+                    <td>SKILL.md body under 5,000 tokens (~500 lines)</td>
+                    <td>Move detailed content to <code>references/</code></td>
+                  </tr>
+                  <tr>
+                    <td><code>description-quality</code></td>
+                    <td><span class="badge badge-warn">warn</span></td>
+                    <td>Description includes a "Use when" trigger clause</td>
+                    <td>Add "Use when the user asks to..." to description</td>
+                  </tr>
+                  <tr>
+                    <td><code>name-matches-dir</code></td>
+                    <td><span class="badge badge-error">error</span></td>
+                    <td>Frontmatter <code>name</code> matches parent directory</td>
+                    <td>Rename the directory or the <code>name</code> field</td>
+                  </tr>
+                  <tr>
+                    <td><code>no-generic-instructions</code></td>
+                    <td><span class="badge badge-warn">warn</span></td>
+                    <td>Flags vague phrases: "handle errors appropriately", "follow best practices", "use proper error handling"</td>
+                    <td>Replace with specific, actionable instructions</td>
+                  </tr>
+                  <tr>
+                    <td><code>progressive-disclosure</code></td>
+                    <td><span class="badge badge-warn">warn</span></td>
+                    <td>Large skills (200+ lines) use <code>references/</code> for detail</td>
+                    <td>Move supplementary content to <code>references/</code> files</td>
+                  </tr>
+                  <tr>
+                    <td><code>defaults-over-menus</code></td>
+                    <td><span class="badge badge-warn">warn</span></td>
+                    <td>Instructions provide a clear default tool/approach</td>
+                    <td>State the default choice, don't list equal options</td>
+                  </tr>
+                  <tr>
+                    <td><code>gotchas-present</code></td>
+                    <td><span class="badge badge-info">info</span></td>
+                    <td>Skills over 50 lines have a Gotchas or Caveats section</td>
+                    <td>Add a <code>## Gotchas</code> section with edge cases</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Extended Spec -->
+          <section id="extended-spec">
+            <h2>Extended Specification</h2>
+            <p>Optional, 100% backward-compatible extensions for enterprise features. Defined in <code>@skillscraft/spec</code>.</p>
+
+            <h3>Security Manifest</h3>
+            <p>Declare what capabilities a skill needs. Agents can use this to gate permissions.</p>
+            <pre class="code-block"><code><span class="c-kw">interface</span> SecurityManifest {
+  capabilities: CapabilityDeclaration[];
+  requiresNetwork?: <span class="c-str">boolean</span>;
+  modifiesFiles?: <span class="c-str">boolean</span>;
+  executesCommands?: <span class="c-str">boolean</span>;
+  fileSystemScope?: <span class="c-str">"skill-directory"</span> | <span class="c-str">"workspace"</span> | <span class="c-str">"system"</span>;
+}
+
+<span class="c-kw">interface</span> CapabilityDeclaration {
+  capability: <span class="c-str">string</span>;  <span class="c-comment">// e.g., "file:read", "shell:execute"</span>
+  reason: <span class="c-str">string</span>;
+  optional?: <span class="c-str">boolean</span>;
+}</code></pre>
+
+            <h3>Test Scenarios</h3>
+            <p>Structured test cases for evaluating skill behavior.</p>
+            <pre class="code-block"><code><span class="c-kw">interface</span> TestScenario {
+  name: <span class="c-str">string</span>;
+  description: <span class="c-str">string</span>;
+  cases: TestCase[];
+}
+
+<span class="c-kw">interface</span> TestCase {
+  name: <span class="c-str">string</span>;
+  input: <span class="c-str">string</span>;      <span class="c-comment">// Prompt to test with</span>
+  assertions: TestAssertion[];
+  expectedBehavior?: <span class="c-str">string</span>;
+}
+
+<span class="c-kw">interface</span> TestAssertion {
+  type: <span class="c-str">"contains"</span> | <span class="c-str">"not-contains"</span> | <span class="c-str">"matches-regex"</span>
+      | <span class="c-str">"file-created"</span> | <span class="c-str">"file-modified"</span>
+      | <span class="c-str">"command-executed"</span> | <span class="c-str">"custom"</span>;
+  value: <span class="c-str">string</span>;
+  description?: <span class="c-str">string</span>;
+}</code></pre>
+
+            <h3>Tool Binding</h3>
+            <p>Declare tool dependencies with version requirements.</p>
+            <pre class="code-block"><code><span class="c-kw">interface</span> ToolBinding {
+  dependencies: ToolDependency[];
+}
+
+<span class="c-kw">interface</span> ToolDependency {
+  tool: <span class="c-str">string</span>;       <span class="c-comment">// e.g., "Bash", "Read", "Bash(git:*)"</span>
+  required: <span class="c-str">boolean</span>;
+  purpose: <span class="c-str">string</span>;
+  minVersion?: <span class="c-str">string</span>;
+}</code></pre>
+
+            <h3>Skill Composition</h3>
+            <p>Define relationships between skills.</p>
+            <pre class="code-block"><code><span class="c-kw">interface</span> SkillComposition {
+  dependencies: SkillDependency[];
+  conflicts?: <span class="c-str">string</span>[];
+  executionOrder?: <span class="c-str">"before"</span> | <span class="c-str">"after"</span> | <span class="c-str">"independent"</span>;
+}
+
+<span class="c-kw">interface</span> SkillDependency {
+  skillName: <span class="c-str">string</span>;
+  reason: <span class="c-str">string</span>;
+  optional?: <span class="c-str">boolean</span>;
+}</code></pre>
+          </section>
+
+          <!-- Constants -->
+          <section id="constants">
+            <h2>Constants</h2>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Constant</th><th>Value</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr><td>Name min length</td><td>1</td><td>Minimum characters for skill name</td></tr>
+                  <tr><td>Name max length</td><td>64</td><td>Maximum characters for skill name</td></tr>
+                  <tr><td>Description max length</td><td>1024</td><td>Maximum characters for description</td></tr>
+                  <tr><td>Compatibility max length</td><td>500</td><td>Maximum characters for compatibility</td></tr>
+                  <tr><td>Body token budget</td><td>5000</td><td>Recommended max tokens for SKILL.md body</td></tr>
+                  <tr><td>Body line budget</td><td>500</td><td>Recommended max lines for SKILL.md body</td></tr>
+                  <tr><td>Name regex</td><td><code>/^[a-z0-9](?:[a-z0-9]|-(?=[a-z0-9])){0,62}[a-z0-9]?$/</code></td><td>Valid name pattern</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/Pratiyush/agentic-skills-framework">Agentic Skills Framework</a> &middot; Apache-2.0</p>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+      var btn = document.getElementById('theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -19,17 +19,23 @@
   <!-- Navigation -->
   <header class="nav">
     <div class="nav-inner">
-      <a href="/" class="nav-brand">
+      <a href="./" class="nav-brand">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         Agentic Skills Framework
       </a>
       <nav class="nav-links">
-        <a href="/">Home</a>
+        <a href="./">Home</a>
         <a href="concepts.html">Concepts</a>
-        <a href="https://www.npmjs.com/package/@skillscraft/core" target="_blank">npm</a>
-        <a href="https://github.com/Pratiyush/agentic-skills-framework" target="_blank" class="nav-github">
+        <a href="gallery.html">Gallery</a>
+        <a href="specification.html">Specification</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="https://github.com/Pratiyush/agentic-skills-framework" target="_blank" rel="noopener noreferrer" class="nav-github" aria-label="GitHub repository">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -38,7 +44,7 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <div class="hero-badge">Compatible with <a href="https://agentskills.io">agentskills.io</a> specification</div>
+        <div class="hero-badge">Open Agent Skills Format</div>
         <h1>The TypeScript toolkit for<br>Agent Skills</h1>
         <p class="hero-sub">Build, validate, lint, and ship skills that work across Claude Code, GitHub Copilot, Cursor, OpenAI Codex, Gemini CLI, and 33+ more agents.</p>
         <div class="hero-actions">
@@ -58,14 +64,14 @@
     <section class="section">
       <div class="container">
         <h2 class="section-title">Why Agentic Skills Framework?</h2>
-        <p class="section-desc">The <a href="https://agentskills.io">Agent Skills specification</a> defines a portable format for giving AI agents new capabilities. It's adopted by 33+ products. But the ecosystem needs TypeScript tooling.</p>
+        <p class="section-desc">The Agent Skills specification defines a portable format for giving AI agents new capabilities. It's adopted by 33+ products. This framework provides the TypeScript tooling.</p>
         <div class="card-grid cols-3">
           <div class="card">
             <div class="card-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
             </div>
             <h3>Validate</h3>
-            <p>Check skills against the agentskills.io specification. Catch errors before they reach production.</p>
+            <p>Check skills against the Agent Skills specification. Catch errors before they reach production.</p>
           </div>
           <div class="card">
             <div class="card-icon">
@@ -112,7 +118,7 @@ npm install @skillscraft/spec</code></pre>
         <pre class="code-block"><code><span class="c-comment"># Create a new skill</span>
 skill init my-skill
 
-<span class="c-comment"># Validate against the agentskills.io specification</span>
+<span class="c-comment"># Validate against the Agent Skills specification</span>
 skill validate my-skill
 
 <span class="c-comment"># Lint for best practices (context budget, description quality, etc.)</span>
@@ -189,7 +195,7 @@ Use this when the user asks you to review code, a pull request, or a diff.
     <section class="section section-alt">
       <div class="container">
         <h2 class="section-title">Lint rules</h2>
-        <p class="section-desc">Best-practice checks that go beyond spec compliance. Based on <a href="https://agentskills.io/skill-creation/best-practices">agentskills.io best practices</a>.</p>
+        <p class="section-desc">Best-practice checks that go beyond spec compliance. Based on <a href="https://Agent Skills/skill-creation/best-practices">Agent Skills best practices</a>.</p>
         <div class="table-wrap">
           <table>
             <thead><tr><th>Rule</th><th>Severity</th><th>What it checks</th></tr></thead>
@@ -241,14 +247,14 @@ Use this when the user asks you to review code, a pull request, or a diff.
             <p>Deep dive into Agent Skills: progressive disclosure, activation lifecycle, cross-agent compatibility, security, and evaluation.</p>
             <span class="card-arrow">&rarr;</span>
           </a>
-          <a href="https://agentskills.io/specification" class="card card-link" target="_blank">
-            <h3>Agent Skills Specification</h3>
-            <p>The official open format spec for SKILL.md files.</p>
+          <a href="specification.html" class="card card-link">
+            <h3>Specification Reference</h3>
+            <p>Complete reference for frontmatter, validation rules, lint rules, and extended spec.</p>
             <span class="card-arrow">&rarr;</span>
           </a>
-          <a href="https://agentskills.io/skill-creation/best-practices" class="card card-link" target="_blank">
-            <h3>Best Practices</h3>
-            <p>How to write skills that are well-scoped and calibrated to the task.</p>
+          <a href="gallery.html" class="card card-link">
+            <h3>Skill Gallery</h3>
+            <p>Browse example skills with search, language filters, and facet navigation.</p>
             <span class="card-arrow">&rarr;</span>
           </a>
           <a href="https://github.com/Pratiyush/agentic-skills-framework/blob/master/CONTRIBUTING.md" class="card card-link" target="_blank">
@@ -263,7 +269,7 @@ Use this when the user asks you to review code, a pull request, or a diff.
 
   <footer>
     <div class="container">
-      <p><a href="https://github.com/Pratiyush/agentic-skills-framework">Agentic Skills Framework</a> &middot; Apache-2.0 &middot; Compatible with <a href="https://agentskills.io">agentskills.io</a></p>
+      <p><a href="https://github.com/Pratiyush/agentic-skills-framework">Agentic Skills Framework</a> &middot; Apache-2.0</p>
     </div>
   </footer>
 
@@ -273,6 +279,20 @@ Use this when the user asks you to review code, a pull request, or a diff.
     function parseFM(c){const m=c.match(FM_RE);if(!m)return null;const fm={};m[1].split('\n').forEach(l=>{const kv=l.match(/^(\w[\w-]*):\s*(.*)$/);if(kv)fm[kv[1]]=kv[2].replace(/^["']|["']$/g,'');});return{fm,body:m[2].trim()};}
     function runValidate(){const c=document.getElementById('skill-input').value,r=document.getElementById('results'),e=[];const p=parseFM(c);if(!p){r.innerHTML='<div class="r-err">No valid YAML frontmatter found.</div>';return;}const{fm}=p;if(!fm.name)e.push({s:'error',m:'name is required'});else{if(fm.name.length>64)e.push({s:'error',m:`name exceeds 64 chars (${fm.name.length})`});if(!SKILL_NAME_REGEX.test(fm.name))e.push({s:'error',m:'name: lowercase alphanumeric + hyphens only, no leading/trailing/consecutive hyphens'});}if(!fm.description)e.push({s:'error',m:'description is required'});else if(fm.description.length>1024)e.push({s:'error',m:'description exceeds 1024 chars'});if(fm.compatibility&&fm.compatibility.length>500)e.push({s:'error',m:'compatibility exceeds 500 chars'});const known=new Set(['name','description','license','compatibility','metadata','allowed-tools']);Object.keys(fm).forEach(k=>{if(!known.has(k))e.push({s:'warn',m:`unknown field "${k}"`});});r.innerHTML=e.length===0?'<div class="r-ok">All spec checks pass.</div>':e.map(x=>`<div class="r-${x.s}">${x.s==='error'?'Error':'Warn'}: ${x.m}</div>`).join('');}
     function runLint(){const c=document.getElementById('skill-input').value,r=document.getElementById('results'),d=[];const p=parseFM(c);if(!p){r.innerHTML='<div class="r-err">No valid frontmatter found.</div>';return;}const{fm,body}=p,t=Math.ceil(body.length/4),l=body.split('\n');if(t>5000)d.push({s:'warn',m:`~${t} tokens (max 5000). Move content to references/.`});if(l.length>500)d.push({s:'warn',m:`${l.length} lines (max 500).`});if(fm.description&&!/\bwhen\b/i.test(fm.description)&&!/\buse .*(for|if|when)\b/i.test(fm.description))d.push({s:'warn',m:'description: add "Use when..." trigger clause'});['handle errors appropriately','follow best practices','use proper error handling'].forEach(ph=>{if(body.toLowerCase().includes(ph))d.push({s:'warn',m:`generic: "${ph}". Be specific.`});});if(l.length>50&&!/## gotchas/i.test(body)&&!/## caveats/i.test(body))d.push({s:'info',m:'consider adding a "## Gotchas" section'});r.innerHTML=d.length===0?'<div class="r-ok">All lint rules pass.</div>':d.map(x=>`<div class="r-${x.s}">${x.s[0].toUpperCase()+x.s.slice(1)}: ${x.m}</div>`).join('');}
+  </script>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+      var btn = document.getElementById('theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
   </script>
 </body>
 </html>

@@ -16,17 +16,23 @@
 <body>
   <header class="nav">
     <div class="nav-inner">
-      <a href="/" class="nav-brand">
+      <a href="./" class="nav-brand">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         Agentic Skills Framework
       </a>
       <nav class="nav-links">
-        <a href="/">Home</a>
+        <a href="./">Home</a>
         <a href="concepts.html">Concepts</a>
-        <a href="https://www.npmjs.com/package/@skillscraft/core" target="_blank">npm</a>
-        <a href="https://github.com/Pratiyush/agentic-skills-framework" target="_blank" class="nav-github">
+        <a href="gallery.html">Gallery</a>
+        <a href="specification.html">Specification</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="https://github.com/Pratiyush/agentic-skills-framework" target="_blank" rel="noopener noreferrer" class="nav-github" aria-label="GitHub repository">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -60,7 +66,7 @@
       <h2>1. What Are Agent Skills?</h2>
       <p>An Agent Skill is a <strong>folder containing a <code>SKILL.md</code> file</strong>. That file includes metadata (name and description) and instructions that tell an AI agent how to perform a specific task. Skills can also bundle scripts, templates, and reference materials.</p>
 
-      <p>The <a href="https://agentskills.io/specification">Agent Skills specification</a> is an open format adopted by <strong>33+ agent products</strong> including Claude Code, GitHub Copilot, Cursor, OpenAI Codex, Gemini CLI, VS Code, JetBrains Junie, Roo Code, OpenHands, and more.</p>
+      <p>The Agent Skills specification is an open format adopted by <strong>33+ agent products</strong> including Claude Code, GitHub Copilot, Cursor, OpenAI Codex, Gemini CLI, VS Code, JetBrains Junie, Roo Code, OpenHands, and more.</p>
 
       <p>Think of skills as <strong>portable expertise packages</strong>. They give agents domain-specific knowledge they wouldn't have otherwise &mdash; your company's API patterns, your team's deployment workflow, your project's edge cases.</p>
 
@@ -435,40 +441,32 @@ description: >
       <h3>Compatible Agents (33+)</h3>
       <p>Claude Code, GitHub Copilot, Cursor, OpenAI Codex, VS Code, Gemini CLI, JetBrains Junie, Roo Code, OpenHands, Amp, Letta, Goose, Kiro, TRAE, Factory, Firebender, Spring AI, Databricks Genie Code, Snowflake Cortex Code, and more.</p>
 
-      <h3>Skill Registries</h3>
-      <table>
-        <tr><th>Registry</th><th>Skills</th><th>Features</th></tr>
-        <tr><td><a href="https://skills.sh">skills.sh</a> (Vercel)</td><td>160K+</td><td>CLI install, Snyk security scanning</td></tr>
-        <tr><td><a href="https://skillsmp.com">SkillsMP</a></td><td>350K+</td><td>Semantic search, AI-powered discovery</td></tr>
-        <tr><td><a href="https://lobehub.com/skills">LobeHub</a></td><td>20K+</td><td>Advanced filtering, categories</td></tr>
-        <tr><td>Awesome lists</td><td>1K+ curated</td><td>Hand-vetted quality, organized by creator</td></tr>
-      </table>
-
-      <h3>Tooling</h3>
-      <table>
-        <tr><th>Tool</th><th>Language</th><th>What It Does</th></tr>
-        <tr><td><a href="https://github.com/agentskills/agentskills">skills-ref</a></td><td>Python</td><td>Basic validation, metadata read, prompt XML gen (demo only)</td></tr>
-        <tr><td><a href="https://github.com/microsoft/waza">waza</a></td><td>Go</td><td>Scaffold, evaluate, token count, compliance check, CI/CD</td></tr>
-        <tr><td><strong><a href="https://github.com/Pratiyush/agentic-skills-framework">@skillscraft</a></strong></td><td>TypeScript</td><td>Parse, validate, lint, scaffold &mdash; plus extended spec for security, testing, composition</td></tr>
-      </table>
-
       <h3>Further Reading</h3>
       <ul>
-        <li><a href="https://agentskills.io/specification">Agent Skills Specification</a></li>
-        <li><a href="https://agentskills.io/skill-creation/best-practices">Best Practices for Skill Creators</a></li>
-        <li><a href="https://agentskills.io/skill-creation/evaluating-skills">Evaluating Skill Output Quality</a></li>
-        <li><a href="https://agentskills.io/skill-creation/optimizing-descriptions">Optimizing Skill Descriptions</a></li>
-        <li><a href="https://agentskills.io/skill-creation/using-scripts">Using Scripts in Skills</a></li>
-        <li><a href="https://agentskills.io/clients">Client Showcase (33+ Agents)</a></li>
-        <li><a href="https://agentskills.io/client-implementation/adding-skills-support">Adding Skills Support to Your Agent</a></li>
+        <li><a href="specification.html">Specification Reference</a></li>
+        <li><a href="gallery.html">Skill Gallery &amp; Examples</a></li>
       </ul>
     </section>
   </div>
 
   <footer>
     <div class="container">
-      <p><a href="https://github.com/Pratiyush/agentic-skills-framework">Agentic Skills Framework</a> &middot; Apache-2.0 &middot; Compatible with <a href="https://agentskills.io">agentskills.io</a></p>
+      <p><a href="https://github.com/Pratiyush/agentic-skills-framework">Agentic Skills Framework</a> &middot; Apache-2.0</p>
     </div>
   </footer>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+      var btn = document.getElementById('theme-toggle');
+      if (btn) btn.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var isDark = current === 'dark' || (!current && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+  </script>
 </body>
 </html>
