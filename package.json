@@ -14,7 +14,6 @@
     "clean": "turbo run clean",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "validate:skills": "node scripts/validate-skills.mjs",
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {

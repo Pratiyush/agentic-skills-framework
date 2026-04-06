@@ -39,5 +39,3 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Validate all skills
-        run: node scripts/validate-skills.mjs

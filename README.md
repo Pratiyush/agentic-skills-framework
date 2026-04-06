@@ -126,6 +126,10 @@ Skills built with this framework work with any agent that supports the [Agent Sk
 
 Claude Code, GitHub Copilot, Cursor, OpenAI Codex, VS Code, Gemini CLI, JetBrains Junie, OpenHands, Goose, Roo Code, Amp, Letta, TRAE, Kiro, and more.
 
+## Marketplace
+
+Browse and install production skills from [SkillsCraft Hub](https://github.com/Pratiyush/skillscraft-hub).
+
 ## Links
 
 - [Agent Skills Specification](https://agentskills.io/specification)

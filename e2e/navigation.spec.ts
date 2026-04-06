@@ -12,29 +12,16 @@ test.describe("Site Navigation", () => {
     await expect(page).toHaveTitle(/Concepts/);
   });
 
-  test("gallery page loads", async ({ page }) => {
-    await page.goto("/gallery.html");
-    await expect(page).toHaveTitle(/Skill Gallery/);
-  });
-
   test("specification page loads", async ({ page }) => {
     await page.goto("/specification.html");
     await expect(page).toHaveTitle(/Specification/);
   });
 
   test("nav links are present on all pages", async ({ page }) => {
-    for (const path of ["/", "/concepts.html", "/gallery.html", "/specification.html"]) {
+    for (const path of ["/", "/concepts.html", "/specification.html"]) {
       await page.goto(path);
-      await expect(page.locator('.nav-links a[href="gallery.html"]')).toBeVisible();
       await expect(page.locator('.nav-links a[href="specification.html"]')).toBeVisible();
     }
-  });
-
-  test("gallery link navigates correctly from home", async ({ page }) => {
-    await page.goto("/");
-    await page.click('a[href="gallery.html"]');
-    await expect(page).toHaveURL(/gallery/);
-    await expect(page.locator("h1")).toHaveText("Skill Gallery");
   });
 
   test("specification link navigates correctly from home", async ({ page }) => {
