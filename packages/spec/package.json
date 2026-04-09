@@ -1,6 +1,6 @@
 {
   "name": "@skillscraft/spec",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "TypeScript types and JSON schemas for the Agent Skills specification",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -14,7 +14,10 @@
     },
     "./schemas/skill.schema.json": "./schemas/skill.schema.json"
   },
-  "files": ["dist", "schemas"],
+  "files": [
+    "dist",
+    "schemas"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
@@ -38,5 +41,11 @@
     "url": "https://github.com/Pratiyush/agentic-skills-framework",
     "directory": "packages/spec"
   },
-  "keywords": ["agent-skills", "agentskills", "skill-spec", "ai-agents", "typescript"]
+  "keywords": [
+    "agent-skills",
+    "agentskills",
+    "skill-spec",
+    "ai-agents",
+    "typescript"
+  ]
 }
