@@ -35,7 +35,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pratiyush/agentic-skills-framework",
+    "url": "https://github.com/Pratiyush/skill-sdk",
     "directory": "packages/spec"
   },
   "keywords": ["agent-skills", "agentskills", "skill-spec", "ai-agents", "typescript"]
